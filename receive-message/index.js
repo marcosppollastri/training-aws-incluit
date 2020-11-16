@@ -15,13 +15,11 @@ exports.handler = async (event) => {
         await Promise.all(
             output.map(
                 body => sns.publish({
-                    Message: body,
-                    TopicArn: 'arn:aws:sns:us-east-1:437051718508:pepe',
+                    Message: `Hola ${JSON.parse(body).name}`,
+                    TopicArn: 'arn:aws:sns:us-east-1:437051718508:pepe'
                 }).promise()
             )
         );
-
-        console.log('Delivered message to SNS');
 
         // Status code 200 means we were successful
         // Successful handling removes the message from the queue
