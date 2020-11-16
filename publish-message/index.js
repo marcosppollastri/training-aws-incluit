@@ -5,9 +5,8 @@ const sqs = new AWS.SQS();
 
 exports.handler = async (event) => {
     try {
-        console.log(event);
-
         await sqs.sendMessage({
+            // All messages in SQS MUST be a String
             MessageBody: JSON.stringify({
                 name: 'pepe'
             }),
